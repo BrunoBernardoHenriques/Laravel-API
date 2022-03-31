@@ -1,27 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Store;
 
-class StoreController extends Controller
+class ProductController extends Controller
 {
-    private $store;
-
-     public function __construct(Store $store){
-         $this->store = $store;
-     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Store $store)
     {
-        return $this->store->paginate(10);
         //
+        return $store->with('products')->first();
     }
 
     /**
@@ -32,43 +27,40 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-       return $this->store->create($request->all());
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Store $store
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Store $store)
+    public function show($id)
     {
         //
-        return $store;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Store  $store
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Store $store)
+    public function update(Request $request, $id)
     {
-        $store->update($request->all());
-
-        return $store;
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Store  $store
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Store $store)
+    public function destroy($id)
     {
-        return $store->delete();
+        //
     }
 }

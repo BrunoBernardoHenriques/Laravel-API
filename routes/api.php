@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResource('stores', \App\Http\Controllers\Api\StoreController::class);
+Route::apiResource('stores.products', \App\Http\Controllers\Api\ProductController::class)->only(['index']);
